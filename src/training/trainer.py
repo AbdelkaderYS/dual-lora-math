@@ -223,7 +223,7 @@ def train(config, debug=False, output_dir_override=None, seed_override=None):
         report_to="wandb" if use_wandb else "none",
         run_name=run_name,
         dataloader_pin_memory=(hw.n_gpus > 0),
-        dataloader_num_workers=min(4, max(1, os.cpu_count() // 2)),
+        dataloader_num_workers=max(4, min(16, os.cpu_count() // 2)),
         remove_unused_columns=False,
         seed=tcfg.get("seed", 42),
     )
