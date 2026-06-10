@@ -11,8 +11,8 @@
 
 | Component | Role |
 |-----------|------|
-| `ReLU(BA)` | Magnitude group — controls update scale |
-| `Sign(DC)` | Direction group — controls update sign via SignSTE |
+| `ReLU(BA)` | Magnitude group : controls update scale |
+| `Sign(DC)` | Direction group : controls update sign via SignSTE |
 
 ## Quick start (VS Code → HPCC)
 
@@ -35,7 +35,7 @@ bash scripts/deploy_to_hub.sh \
     yourname/dual-lora-llemma-7b
 ```
 
-## Switch method or model — one line in the YAML
+## Switch method or model: one line in the YAML
 
 ```yaml
 # configs/dual_lora_config.yaml
