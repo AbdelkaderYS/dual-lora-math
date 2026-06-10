@@ -1,0 +1,15 @@
+defaults:
+  - base_config
+
+experiment:
+  method: "dual_lora"
+  name: "dual_lora_r16"
+
+training:
+  run_name: "dual_lora_r16_lr3e4"
+  seed: 42
+  output_dir: "experiments/results"
+
+lora:
+  r1: 64
+  r2: 64

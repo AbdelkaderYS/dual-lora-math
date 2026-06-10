@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+logs/
+experiments/results/
+configs/accelerate_runtime.yaml
+*.pt
+*.bin
+*.safetensors
+.env
+notebooks/
+.DS_Store

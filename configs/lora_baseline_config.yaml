@@ -1,0 +1,14 @@
+defaults:
+  - base_config
+
+experiment:
+  method: "lora"
+  name: "lora_baseline_r16"
+
+training:
+  run_name: "lora_baseline_r16_lr3e4"
+  seed: 42
+  output_dir: "experiments/results"
+
+lora:
+  r: 64
