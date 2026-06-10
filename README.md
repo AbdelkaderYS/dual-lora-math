@@ -14,8 +14,6 @@
 | `ReLU(BA)` | Magnitude group — controls update scale |
 | `Sign(DC)` | Direction group — controls update sign via SignSTE |
 
----
-
 ## Quick start (VS Code → HPCC)
 
 ```bash
@@ -37,8 +35,6 @@ bash scripts/deploy_to_hub.sh \
     yourname/dual-lora-llemma-7b
 ```
 
----
-
 ## Switch method or model — one line in the YAML
 
 ```yaml
@@ -55,8 +51,6 @@ sbatch scripts/train.sh configs/dual_lora_config.yaml
 sbatch scripts/train.sh configs/full_ft_config.yaml
 sbatch scripts/train.sh configs/qlora_config.yaml
 ```
-
----
 
 ## Project structure
 
@@ -103,8 +97,6 @@ dual-lora-math/
     └── analysis.ipynb             # Plots and analysis
 ```
 
----
-
 ## Hardware auto-detection
 
 `src/utils/hardware.py` detects at startup:
@@ -115,8 +107,6 @@ dual-lora-math/
 
 No manual configuration needed. Works on 1 GPU, 2 GPUs, 4 GPUs, or CPU.
 
----
-
 ## Datasets
 
 | Dataset | Split | Size | Use |
@@ -125,18 +115,6 @@ No manual configuration needed. Works on 1 GPU, 2 GPUs, 4 GPUs, or CPU.
 | MetaMathQA | val (2%) | ~7.9K | Early stopping |
 | GSM8K | test | 1.3K | Benchmark |
 | MATH | test | 5K | Benchmark |
-
----
-
-## Expected results
-
-| Method | GSM8K | MATH |
-|--------|-------|------|
-| LLEMMA-7B (base) | ~36% | ~14% |
-| LoRA (r=16) | ~60-65% | ~20-25% |
-| **Dual LoRA (ours)** | **+2-5%** | **+2-5%** |
-
----
 
 ## Citation
 
