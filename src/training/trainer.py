@@ -162,12 +162,9 @@ def train(config, debug=False, output_dir_override=None, seed_override=None):
         print("[Trainer] Enabling torch.compile...")
         model = torch.compile(model)
 
-    model.enable_input_require_grads()      #avant gradient_checkpointing
+    model.enable_input_require_grads()
     model.gradient_checkpointing_enable()
-    model.config.use_cache = False   
-
-    #model = apply_adapter(model, config)
-    #model.gradient_checkpointing_enable()
+    model.config.use_cache = False
 
 
     tcfg = config["training"]
