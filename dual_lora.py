@@ -133,6 +133,10 @@ class DualLoRALinear(nn.Module):
             delta_W = self.dual_lora.scaling * F.relu(BA) * torch.sign(DC)
             self.base_linear.weight.sub_(delta_W.to(self.base_linear.weight.dtype))
 
+    def unwrap(self) -> nn.Linear:
+        self.merge_weights()
+        return self.base_linear
+
 
 def apply_dual_lora(model: nn.Module, config: DualLoRAConfig) -> nn.Module:
     replaced = 0
