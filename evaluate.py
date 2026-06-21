@@ -154,7 +154,7 @@ def evaluate(dataset_name: str, tokenizer):
 
 def main():
     from transformers import AutoTokenizer
-    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH, token=config.HF_TOKEN)
     tokenizer.pad_token = tokenizer.eos_token
     math_acc = evaluate("math", tokenizer)
     gsm8k_acc = evaluate("gsm8k", tokenizer)

@@ -61,7 +61,7 @@ def extract_boxed(text: str) -> str:
 
 def main():
     from transformers import AutoTokenizer
-    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH, token=config.HF_TOKEN)
     tokenizer.pad_token = tokenizer.eos_token
 
     os.makedirs(config.GSM8K_TRACES_DIR, exist_ok=True)

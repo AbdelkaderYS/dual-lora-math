@@ -2,7 +2,8 @@ import os
 
 BASE = "/mnt/scratch/djagbapr/dual-lora-mp-project"
 
-MODEL_PATH = "/mnt/home/djagbapr/Saley/ABIA_EUNICE/meta-prompting/Math/outputs/models/Llama-3.3-70B-Instruct"
+MODEL_PATH = "meta-llama/Llama-3.3-70B-Instruct"
+HF_TOKEN = os.environ.get("HF_TOKEN", None)
 
 MATH_DATA_DIR = "/mnt/home/djagbapr/Saley/ABIA_EUNICE/meta-prompting/Math/data/math"
 GSM8K_DATA_DIR = "/mnt/home/djagbapr/Saley/ABIA_EUNICE/meta-prompting/Math/data/gsm8k"

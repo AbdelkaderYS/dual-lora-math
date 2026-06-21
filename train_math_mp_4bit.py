@@ -76,7 +76,7 @@ def main():
     print(f"GPUs: {n_gpus}  Grad accum: {grad_accum}  "
           f"Effective batch: {config.PER_DEVICE_BATCH_SIZE * grad_accum * max(n_gpus, 1)}")
 
-    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH, token=config.HF_TOKEN)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
 
@@ -92,6 +92,7 @@ def main():
         quantization_config=bnb_config,
         device_map="auto",
         attn_implementation="sdpa",
+        token=config.HF_TOKEN,
     )
 
     model.config.use_cache = False

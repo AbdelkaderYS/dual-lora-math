@@ -104,7 +104,7 @@ def evaluate_on_dataset(model_path: str, dataset_name: str, output_file: str):
 
     print(f"Evaluating {dataset_name} on merged model: {len(problems)} samples")
 
-    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH)
+    tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH, token=config.HF_TOKEN)
     tokenizer.pad_token = tokenizer.eos_token
 
     prompts = []
@@ -201,6 +201,7 @@ def main():
             torch_dtype=torch.bfloat16,
             device_map="auto",
             attn_implementation="sdpa",
+            token=config.HF_TOKEN,
         )
 
         print("Applying Dual LoRA and merging adapter...")
@@ -208,7 +209,7 @@ def main():
 
         print(f"Saving merged model to {merged_path}")
         model.save_pretrained(merged_path, max_shard_size="10GB")
-        tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH)
+        tokenizer = AutoTokenizer.from_pretrained(config.MODEL_PATH, token=config.HF_TOKEN)
         tokenizer.save_pretrained(merged_path)
         print("Merged model saved.")
     else:
