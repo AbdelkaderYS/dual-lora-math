@@ -192,7 +192,7 @@ def main():
             model = apply_dual_lora(model, dual_config)
         else:
             model = apply_dual_lora_4bit(model, dual_config)
-            model.peft_config = {"dual_lora": dual_config}
+            model.is_loaded_in_4bit = False
         callbacks = [WarmupCallback()]
 
     train_dataset = load_jsonl(os.path.join(data_dir, "train.jsonl"))
