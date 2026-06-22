@@ -111,7 +111,7 @@ class DualLoRALinear(nn.Module):
             sign_ste_threshold=config.sign_ste_threshold,
             warmup_steps=config.warmup_steps,
         )
-        self.dual_lora.to(device=self.base_linear.weight.device, dtype=self.base_linear.weight.dtype)
+        self.dual_lora.to(device=self.base_linear.weight.device)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         base_out = self.base_linear(x)
