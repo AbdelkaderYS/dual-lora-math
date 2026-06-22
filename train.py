@@ -159,7 +159,7 @@ def main():
             attn_implementation="sdpa",
             token=HF_TOKEN,
         )
-        if args.method == "q_dual_lora":
+        if args.method in ("qlora", "q_dual_lora"):
             model = prepare_model_for_kbit_training(model)
     else:
         model = AutoModelForCausalLM.from_pretrained(
