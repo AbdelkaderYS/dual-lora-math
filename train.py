@@ -19,7 +19,6 @@ from peft import (
     LoraConfig,
     TaskType,
     get_peft_model,
-    prepare_model_for_kbit_training,
 )
 from datasets import Dataset
 
@@ -159,8 +158,6 @@ def main():
             attn_implementation="sdpa",
             token=HF_TOKEN,
         )
-        if args.method in ("qlora", "q_dual_lora"):
-            model = prepare_model_for_kbit_training(model)
     else:
         model = AutoModelForCausalLM.from_pretrained(
             MODEL_PATH,
@@ -195,6 +192,7 @@ def main():
             model = apply_dual_lora(model, dual_config)
         else:
             model = apply_dual_lora_4bit(model, dual_config)
+            model.peft_config = {}
         callbacks = [WarmupCallback()]
 
     train_dataset = load_jsonl(os.path.join(data_dir, "train.jsonl"))
