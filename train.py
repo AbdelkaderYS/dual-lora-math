@@ -46,9 +46,9 @@ MAX_SEQ_LEN = {"math": 4096, "gsm8k": 2048}
 LORA_R = 16
 LORA_ALPHA = 32
 LORA_DROPOUT = 0.05
-LORA_R1 = 16
-LORA_R2 = 16
-WARMUP_STEPS = 20
+LORA_R1 = 8
+LORA_R2 = 8
+WARMUP_STEPS = 100
 PER_DEVICE_BATCH_SIZE = 1
 NUM_EPOCHS = 2
 LEARNING_RATE = 2e-4
@@ -120,6 +120,11 @@ def main():
     parser.add_argument("--lr", type=float, default=LEARNING_RATE)
     parser.add_argument("--epochs", type=int, default=NUM_EPOCHS)
     parser.add_argument("--output-dir", type=str, default=None)
+    parser.add_argument("--warmup-steps", type=int, default=WARMUP_STEPS)
+    parser.add_argument("--lora-alpha", type=float, default=LORA_ALPHA)
+    parser.add_argument("--lora-r1", type=int, default=LORA_R1)
+    parser.add_argument("--lora-r2", type=int, default=LORA_R2)
+    parser.add_argument("--weight-decay", type=float, default=0.01)
     args = parser.parse_args()
 
     n_gpus = torch.cuda.device_count()
@@ -184,9 +189,9 @@ def main():
         model.print_trainable_parameters()
     else:
         dual_config = DualLoRAConfig(
-            r1=LORA_R1, r2=LORA_R2,
-            lora_alpha=LORA_ALPHA, lora_dropout=LORA_DROPOUT,
-            target_modules=TARGET_MODULES, warmup_steps=WARMUP_STEPS,
+            r1=args.lora_r1, r2=args.lora_r2,
+            lora_alpha=args.lora_alpha, lora_dropout=LORA_DROPOUT,
+            target_modules=TARGET_MODULES, warmup_steps=args.warmup_steps,
         )
         if args.method == "dual_lora":
             model = apply_dual_lora(model, dual_config)
@@ -220,6 +225,7 @@ def main():
         bf16=True, fp16=False,
         gradient_checkpointing=True,
         max_grad_norm=MAX_GRAD_NORM,
+        weight_decay=args.weight_decay,
         eval_strategy="epoch",
         save_strategy="epoch",
         load_best_model_at_end=True,
@@ -264,9 +270,9 @@ def main():
         torch.save(adapter_state, os.path.join(adapter_path, "dual_lora_adapters.pt"))
         save_cfg = {
             "method": args.method,
-            "r1": LORA_R1, "r2": LORA_R2,
-            "lora_alpha": LORA_ALPHA, "lora_dropout": LORA_DROPOUT,
-            "target_modules": TARGET_MODULES, "warmup_steps": WARMUP_STEPS,
+            "r1": args.lora_r1, "r2": args.lora_r2,
+            "lora_alpha": args.lora_alpha, "lora_dropout": LORA_DROPOUT,
+            "target_modules": TARGET_MODULES, "warmup_steps": args.warmup_steps,
             "dataset": args.dataset, "data_type": args.data_type,
         }
         tokenizer.save_pretrained(adapter_path)
