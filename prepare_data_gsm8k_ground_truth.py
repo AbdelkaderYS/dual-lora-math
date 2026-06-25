@@ -9,8 +9,8 @@ Run once before training:
     python prepare_data_gsm8k_ground_truth.py
 
 Output:
-    /mnt/scratch/djagbapr/lora_data_gsm8k/train.jsonl
-    /mnt/scratch/djagbapr/lora_data_gsm8k/val.jsonl
+    /mnt/gs21/scratch/djagbapr/lora_data_gsm8k/train.jsonl
+    /mnt/gs21/scratch/djagbapr/lora_data_gsm8k/val.jsonl
 """
 
 import json
@@ -23,7 +23,7 @@ from transformers import AutoTokenizer
 MODEL_PATH   = "meta-llama/Llama-3.3-70B-Instruct"
 HF_TOKEN     = os.environ.get("HF_TOKEN", None)
 INPUT_FILE   = "/mnt/home/djagbapr/Saley/ABIA_EUNICE/meta-prompting/Math/data/gsm8k/train.json"
-OUTPUT_DIR   = "/mnt/scratch/djagbapr/lora_data_gsm8k"
+OUTPUT_DIR   = "/mnt/gs21/scratch/djagbapr/lora_data_gsm8k"
 VAL_FRACTION = 0.10
 SEED         = 42
 MAX_SEQ_LEN  = 2048          # examples longer than this are discarded (not truncated)

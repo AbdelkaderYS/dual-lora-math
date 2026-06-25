@@ -33,14 +33,14 @@ MODEL_PATH = "meta-llama/Llama-3.3-70B-Instruct"
 HF_TOKEN = os.environ.get("HF_TOKEN", None)
 
 DATA_DIRS = {
-    ("math", "mp"): "/mnt/scratch/djagbapr/lora_data_mp",
-    ("math", "gt"): "/mnt/scratch/djagbapr/lora_data",
-    ("gsm8k", "mp"): "/mnt/scratch/djagbapr/lora_data_gsm8k_mp",
-    ("gsm8k", "gt"): "/mnt/scratch/djagbapr/lora_data_gsm8k",
+    ("math", "mp"): "/mnt/gs21/scratch/djagbapr/lora_data_mp",
+    ("math", "gt"): "/mnt/gs21/scratch/djagbapr/lora_data",
+    ("gsm8k", "mp"): "/mnt/gs21/scratch/djagbapr/lora_data_gsm8k_mp",
+    ("gsm8k", "gt"): "/mnt/gs21/scratch/djagbapr/lora_data_gsm8k",
 }
 
-OUTPUT_BASE = "/mnt/scratch/djagbapr/lora_outputs"
-LOG_BASE = "/mnt/scratch/djagbapr/lora_outputs/logs"
+OUTPUT_BASE = "/mnt/gs21/scratch/djagbapr/lora_outputs"
+LOG_BASE = "/mnt/gs21/scratch/djagbapr/lora_outputs/logs"
 
 MAX_SEQ_LEN = {"math": 4096, "gsm8k": 2048}
 LORA_R = 16

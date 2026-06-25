@@ -13,7 +13,7 @@ from methods import DualLoRAConfig, apply_dual_lora, apply_dual_lora_4bit, unwra
 
 MODEL_PATH = "meta-llama/Llama-3.3-70B-Instruct"
 HF_TOKEN = os.environ.get("HF_TOKEN", None)
-OUTPUT_BASE = "/mnt/scratch/djagbapr/lora_outputs"
+OUTPUT_BASE = "/mnt/gs21/scratch/djagbapr/lora_outputs"
 
 TARGET_MODULES = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
 

@@ -12,7 +12,7 @@ INPUT_FILE   = (
     "models/Llama-3.3-70B-Instruct/gsm8k/"
     "train_mp_-1_seed0_t0.0_s0_e7473_05-XX_XX-XX_Unknown.jsonl"
 )
-OUTPUT_DIR   = "/mnt/scratch/djagbapr/lora_data_gsm8k_mp"
+OUTPUT_DIR   = "/mnt/gs21/scratch/djagbapr/lora_data_gsm8k_mp"
 TRAIN_RATIO  = 0.9
 SEED         = 42
 MAX_SEQ_LEN  = 2048

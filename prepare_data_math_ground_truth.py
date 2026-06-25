@@ -11,8 +11,8 @@ Source:
     (7500 training problems run through the meta-prompting pipeline)
 
 Output:
-    /mnt/scratch/djagbapr/lora_data_mp/train.jsonl   (~6100 examples)
-    /mnt/scratch/djagbapr/lora_data_mp/val.jsonl     (~680 examples)
+    /mnt/gs21/scratch/djagbapr/lora_data_mp/train.jsonl   (~6100 examples)
+    /mnt/gs21/scratch/djagbapr/lora_data_mp/val.jsonl     (~680 examples)
 
 Run:
     python prepare_data_mp.py
@@ -31,7 +31,7 @@ INPUT_JSONL  = (
     "models/Llama-3.3-70B-Instruct/math/"
     "train_mp_-1_seed0_t0.0_s0_e7500_05-04_16-14_Unknown.jsonl"
 )
-OUTPUT_DIR   = "/mnt/scratch/djagbapr/lora_data_mp"
+OUTPUT_DIR   = "/mnt/gs21/scratch/djagbapr/lora_data_mp"
 VAL_FRACTION = 0.10
 SEED         = 42
 MAX_SEQ_LEN  = 4096
